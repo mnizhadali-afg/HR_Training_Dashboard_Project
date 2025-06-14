@@ -25,4 +25,4 @@ Imagine a company has a global training department (like the one in the "Educati
 4. **Training Hours Delivered:** (Total hours of training provided)
 
 ## Initial Data Schema
-![Initial Data Schema](/assets/images/schema.png)
+![Initial Data Schema](/data/images/schema.png)
