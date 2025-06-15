@@ -1,4 +1,3 @@
-```markdown
 # HR Training Dashboard Project
 
 [![Python](https://img.shields.io/badge/Python-3.12.6-blue.svg)](https://www.python.org/)
@@ -73,9 +72,8 @@ The project leverages a PostgreSQL database and pgAdmin (a GUI for database mana
 * Ensure you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running on your system.
 
 ![Initial Data Schema](/data/images/schema.png)
-```
 
-```
+
 **2. Configuration (Environment Variables):**
 * Sensitive credentials (PostgreSQL username/password/DB name, pgAdmin login) are managed using environment variables loaded from a `.env` file.
 * Create a file named `.env` in the **root of the project directory** (next to `docker-compose.yml`).
@@ -151,6 +149,3 @@ Initial raw data from CSV files is loaded into the PostgreSQL database using a P
     * `enrollments`
     * `feedbacks`
     * `engagements`
-
-## Initial Data Schema
-```
