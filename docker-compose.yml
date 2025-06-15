@@ -5,11 +5,11 @@ services:
     image: postgres:16-alpine # Use the latest PostgreSQL 16 Alpine image
     restart: always
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydatabase
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "5432:5432" # Expose PostgreSQL on port 5432
+      - "${DB_PORT}:5432" # Expose PostgreSQL on port 5432
     volumes:
       - db_data:/var/lib/postgresql/data # Persist database data in a named volume
     healthcheck:
@@ -21,10 +21,10 @@ services:
     image: dpage/pgadmin4:latest # Official pgAdmin Docker image
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: mnizhadali@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: mypgadminpassword
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     ports:
-      - "8080:80" # Expose pgAdmin on port 8080
+      - "${PGADMIN_LISTEN_PORT}:80" # Expose pgAdmin on port 8080
     volumes:
       - pgadmin_data:/var/lib/pgadmin # Persist pgAdmin data in a named volume
     depends_on:

@@ -28,6 +28,7 @@ Imagine a company has a global training department (like the one in the "Educati
 ## Technologies Used
 * **Python** (for data generation, ETL, and API)
     * Libraries: `pandas`, `Flask`, `csv`
+* **pgAdmin** (GUI for interacting with DB)
 * **PostgreSQL** (for database - to be set up on Day 4)
 * **Docker** (for PostgreSQL - to be used on Day 4)
 * **Tableau Public / Power BI Desktop** (for dashboarding - to be used in Week 2)
