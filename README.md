@@ -57,8 +57,10 @@ HR_Training_Dashboard_Project/
 │       ├── enrollments.csv
 │       ├── feedbacks.csv
 │       └── engagements.csv      # Source for the API, but also a raw file
-├── venv/                        # Python virtual environment
-├── .gitignore                   # (Optional) Add 'venv/' here to ignore it in git
+├── venv/ 
+├── .env 
+├── .gitignore                   
+├── docker-compose.yml           
 └── README.md                    # This file!
 ```
 
