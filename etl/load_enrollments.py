@@ -21,8 +21,9 @@ RAW_DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 
 FILES_TO_LOAD = [
     ("participants.csv", "participants"),
     ("courses.csv", "courses"),
-    ("enrollments.csv", "enrollments"), # Already loaded, but good to include for a full run
-    ("feedbacks.csv", "feedbacks")
+    ("enrollments.csv", "enrollments"),
+    ("feedbacks.csv", "feedbacks"),
+    ("engagements.csv", "engagements"),
 ]
 
 def load_csv_to_db(csv_filename, table_name, engine):
