@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine # Use the latest PostgreSQL 16 Alpine image
+    restart: always
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432" # Expose PostgreSQL on port 5432
+    volumes:
+      - db_data:/var/lib/postgresql/data # Persist database data in a named volume
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  pgadmin:
+    image: dpage/pgadmin4:latest # Official pgAdmin Docker image
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: mnizhadali@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: mypgadminpassword
+    ports:
+      - "8080:80" # Expose pgAdmin on port 8080
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin # Persist pgAdmin data in a named volume
+    depends_on:
+      db: # Ensure db service is started before pgAdmin
+        condition: service_healthy # Wait for db to be healthy before starting pgAdmin
+
+volumes:
+  db_data: # Named volume for PostgreSQL data
+  pgadmin_data: # Named volume for pgAdmin data

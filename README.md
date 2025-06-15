@@ -45,6 +45,7 @@ Imagine a company has a global training department (like the one in the "Educati
     * To run the API: Navigate to the `api/` directory (after activating virtual environment) and execute `python api.py`.
 
 ## Project Structure
+```
 HR_Training_Dashboard_Project/
 ├── api/
 │   └── api.py                   # Flask application to serve dummy API data
@@ -58,6 +59,7 @@ HR_Training_Dashboard_Project/
 ├── venv/                        # Python virtual environment
 ├── .gitignore                   # (Optional) Add 'venv/' here to ignore it in git
 └── README.md                    # This file!
+```
 
 ## Initial Data Schema
 ![Initial Data Schema](/data/images/schema.png)
