@@ -68,10 +68,12 @@ HR_Training_Dashboard_Project/
 
 The project leverages a PostgreSQL database and pgAdmin (a GUI for database management) running in Docker containers, orchestrated by Docker Compose. This ensures a consistent and isolated development environment.
 
+### Initial Data Schema
+![Initial Data Schema](/data/images/schema.png)
+
 **1. Prerequisites:**
 * Ensure you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running on your system.
 
-![Initial Data Schema](/data/images/schema.png)
 
 
 **2. Configuration (Environment Variables):**
@@ -149,3 +151,14 @@ Initial raw data from CSV files is loaded into the PostgreSQL database using a P
     * `enrollments`
     * `feedbacks`
     * `engagements`
+
+## Data Transformation
+
+The project employs Python scripts to transform raw data into a clean, unified format suitable for analysis and dashboarding.
+
+### First Transformation: `etl/transform_data.py`
+
+This script performs the initial data transformation by:
+* **Joining** the `enrollments` table with the `participants` table.
+* **Creating new derived fields** such as `is_completed` (a boolean flag based on enrollment status), `enrollment_year`, and `enrollment_month` from the `enrollment_date`.
+* The resulting transformed data is saved into a new table named `transformed_enrollments_participants` in the PostgreSQL database.
