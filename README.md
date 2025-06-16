@@ -56,7 +56,8 @@ HR_Training_Dashboard_Project/
 │   └── images/
 │       └── schema.png           # Database schema diagram
 ├── etl/
-│   └── load_initial_data.py     # Script to load all raw CSVs into PostgreSQL
+│   └── load_initial_data.py     # Script to load initial raw CSVs into PostgreSQL
+│   └── transform_data.py        # Script to load all required KPIs into a Fact Table in PostgreSQL
 ├── venv/                        # Python virtual environment
 ├── .env                         # Environment variables for sensitive data (e.g., DB credentials)
 ├── .gitignore                   # Specifies files/directories to ignore in Git
@@ -154,11 +155,16 @@ Initial raw data from CSV files is loaded into the PostgreSQL database using a P
 
 ## Data Transformation
 
-The project employs Python scripts to transform raw data into a clean, unified format suitable for analysis and dashboarding.
+The project employs Python scripts to transform raw data from the initial CSV imports into a clean, unified, and analytical-ready format suitable for dashboarding and KPI calculations.
 
-### First Transformation: `etl/transform_data.py`
+### Transformation Script: `etl/transform_data.py`
 
-This script performs the initial data transformation by:
-* **Joining** the `enrollments` table with the `participants` table.
-* **Creating new derived fields** such as `is_completed` (a boolean flag based on enrollment status), `enrollment_year`, and `enrollment_month` from the `enrollment_date`.
-* The resulting transformed data is saved into a new table named `transformed_enrollments_participants` in the PostgreSQL database.
+This script orchestrates the core data transformation steps:
+
+1.  **Initial Join (`transformed_enrollments_participants`):** It first performs a join between the `enrollments` and `participants` tables. This step integrates participant demographics with their enrollment records and derives basic fields like `is_completed`, `enrollment_year`, and `enrollment_month`. This intermediate result is stored in the `transformed_enrollments_participants` table.
+2.  **Fact Table Creation (`fact_training_kpis`):** Building upon the previous step, this script then creates a comprehensive "fact" table named `fact_training_kpis`. This is achieved by:
+    * **Joining** `transformed_enrollments_participants` with `courses` to add course details (e.g., `course_name`, `training_hours`).
+    * **Joining** with `feedbacks` to incorporate feedback scores and comments.
+    * The `fact_training_kpis` table serves as the primary data source for dashboarding, containing all necessary fields to directly calculate KPIs like Course Completion Rate, Average Course Feedback Score, Active Participant Count, and Training Hours Delivered. It includes aggregated and derived fields ready for visualization.
+
+---
