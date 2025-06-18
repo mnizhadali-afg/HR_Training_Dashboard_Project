@@ -115,7 +115,38 @@ _(Assumes you have Git, Docker Engine, and Python 3 installed on your Linux dist
 
     _(Expected output: Both `db` and `pgadmin` services should show `Up (healthy)` under their status.)_
 
-4.  **Prepare Python Environment & Run ETL:**
+Absolutely — here's a clean, **important section** you can include in your GitHub README under something like `🔌 Connecting pgAdmin to PostgreSQL in Docker (Windows)`:
+
+---
+
+### 🔌 Connecting pgAdmin to PostgreSQL in Docker (Windows)
+
+If you're using **Docker on Windows** and trying to connect **pgAdmin (in a container)** to your **PostgreSQL database (in another container)**, using `localhost` or `127.0.0.1` as the host **will not work**. That's because each container runs in its own network space.
+
+#### ✅ Use this instead:
+
+```text
+Host: host.docker.internal
+Port: 5432
+Username: <your POSTGRES_USER>      # e.g. mnizhadali
+Password: <your POSTGRES_PASSWORD> # e.g. Simpl3P4ssword
+Database: <your POSTGRES_DB>       # e.g. hr_training_db
+```
+
+`host.docker.internal` is a special DNS name that allows Docker containers to access the host machine, which is where PostgreSQL is actually exposed on port `5432`.
+
+#### Example pgAdmin connection settings:
+
+| Field             | Value                  |
+| ----------------- | ---------------------- |
+| Name              | `hr_training_db`       |
+| Host name/address | `host.docker.internal` |
+| Port              | `5432`                 |
+| Username          | `mnizhadali`           |
+| Password          | `Simpl3P4ssword`       |
+| Maintenance DB    | `hr_training_db`       |
+
+1.  **Prepare Python Environment & Run ETL:**
     Set up a Python virtual environment, install necessary libraries, and execute the ETL scripts:
 
     ```bash
@@ -130,10 +161,10 @@ _(Assumes you have Git, Docker Engine, and Python 3 installed on your Linux dist
 
     _(This will load your raw CSVs and then transform them into the `fact_training_kpis` table in your PostgreSQL database.)_
 
-5.  **Verify Data (Optional - via pgAdmin on Linux):**
+2.  **Verify Data (Optional - via pgAdmin on Linux):**
     Open your web browser on Linux and go to `http://localhost:8080`. Log in with your pgAdmin credentials and connect to your PostgreSQL server (`db:5432`) to confirm the tables (especially `fact_training_kpis`) are populated.
 
-6.  **Stop Docker Services on Linux:**
+3.  **Stop Docker Services on Linux:**
     Once ETL is complete on Linux, it's crucial to stop the containers before transitioning to Windows to avoid port conflicts and ensure data integrity.
     ```bash
     docker-compose down
