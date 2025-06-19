@@ -1,47 +1,51 @@
-# HR Training Dashboard Project
+# 📈 HR Training Dashboard Project: [From Raw Data to Actionable Insights]
 
-[![Python](https://img.shields.io/badge/Python-3.12.6-blue.svg)](https://www.python.org/)
-[![Automation](https://img.shields.io/badge/Automation-GitHub_Actions-yellow.svg)](https://github.com/features/actions)
-[![Status](https://img.shields.io/badge/Status-Active-green.svg)](https://github.com/)
+[![Python](https://img.shields.io/badge/Python-3.x-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
+[![Docker](https://img.shields.io/badge/Docker-26.1.4-blue.svg?logo=docker&logoColor=white)](https://www.docker.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1.svg?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Power BI](https://img.shields.io/badge/Power_BI-2.130.820.0-F2C811.svg?logo=powerbi&logoColor=white)](https://powerbi.microsoft.com/)
+[![Pandas](https://img.shields.io/badge/pandas-2.2.2-150458.svg?logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0.30-336699.svg?logo=sqlalchemy&logoColor=white)](https://www.sqlalchemy.org/)
+[![Psycopg2](https://img.shields.io/badge/psycopg2-2.9.9-006400.svg?logo=postgresql&logoColor=white)](https://pypi.org/project/psycopg2-binary/)
+[![python-dotenv](https://img.shields.io/badge/python--dotenv-1.0.1-F7DF1E.svg?logo=python&logoColor=white)](https://pypi.org/project/python-dotenv/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-## Project Overview
-This project aims to build an automated data pipeline and dashboard to visualize key performance indicators (KPIs) for internal HR/Training programs. It involves integrating data from various simulated sources, transforming it, and presenting it through an interactive dashboard.
+## ✨ Project Overview
 
-## Goal
-Simulate improving and automating a hypothetical internal process (e.g., tracking training completion, feedback, or participant engagement) and visualize its performance. This project directly touches upon data integration, automation, visualization, and process thinking, with a strong link to your lecturing background.
+This project showcases the end-to-end development of an HR Training Dashboard. Starting with raw CSV data, it establishes a robust data pipeline using Docker, PostgreSQL, and Python for ETL processes, culminating in an interactive dashboard built with Power BI. The unique aspect of this project is its successful implementation across a **dual-boot Linux and Windows environment**, simulating a common real-world scenario where development environments might differ from analytical ones.
 
-## Scenario
-Imagine a company has a global training department (like the one in the "Education Expert IT" role). They manually track course completion, participant feedback, and engagement across various platforms (some old, some new). Your task is to automate this, centralize the data, and provide insights.
+The dashboard provides key performance indicators (KPIs) and insights into training effectiveness, participant engagement, and resource allocation within an HR training program.
 
-## Key Performance Indicators (KPIs)
-1.  **Course Completion Rate:** (Percentage of enrolled users who completed a course)
-2.  **Average Course Feedback Score**: (Overall satisfaction with courses)
-3.  **Active Participant Count:** (Number of unique users engaging with training each month/quarter)
-4.  **Training Hours Delivered:** (Total hours of training provided)
+## 🚀 Key Features
 
-## Technologies Used
-* **Python** (for data generation, ETL, and API)
-    * Libraries: `pandas`, `Flask`, `csv`, **`SQLAlchemy`**, **`psycopg2-binary`**
-* **PostgreSQL** (for relational database)
-* **Docker** & **Docker Compose** (for containerizing PostgreSQL and pgAdmin)
-* **pgAdmin** (GUI for interacting with PostgreSQL database)
-* **Tableau Public / Power BI Desktop** (for dashboarding - to be used in Week 2)
-* **Git & GitHub** (for version control)
-* **JSON** (data format for API)
+- **Data Pipeline Automation:** Python scripts for seamless ingestion and transformation of raw training data.
+- **Containerized Database:** PostgreSQL and pgAdmin orchestrated with Docker Compose for isolated and efficient data management.
+- **Robust ETL Process:** Data cleaning, enrichment, and transformation into a star-schema-friendly `fact_training_kpis` table.
+- **Interactive Power BI Dashboard:** Dynamic visualizations of crucial HR training KPIs.
+- **Cross-OS Compatibility:** Detailed setup instructions for both Linux (for pipeline execution) and Windows (for dashboard development).
 
-## Initial Data Sources
-* `data/raw/participants.csv`: Contains participant demographic information.
-* `data/raw/courses.csv`: Contains details about training courses.
-* `data/raw/enrollments.csv`: Records participant enrollments, completion status, and scores.
-* `data/raw/feedbacks.csv`: Stores feedback ratings and comments for enrollments.
-* `data/raw/engagements.csv`: Contains engagement data (initially as a flat file, later served via API).
-* **API Endpoint (`api/api.py`):** Serves `engagements` data in JSON format.
-    * Base URL: `http://127.0.0.1:5000/`
-    * Engagements Endpoint: `http://127.0.0.1:5000/api/engagements`
-    * To run the API: Navigate to the `api/` directory (after activating virtual environment) and execute `python api.py`.
+## 📊 Key Performance Indicators (KPIs)
 
-## Project Structure
+The dashboard focuses on the following critical metrics:
+
+1.  **Course Completion Rate:** Percentage of completed training enrollments.
+2.  **Average Course Feedback Score:** Participant satisfaction and training quality assessment.
+3.  **Active Participant Count:** Unique individuals engaged in training programs over time.
+4.  **Total Training Hours Delivered:** Overall investment and volume of training provided.
+
+## 🛠️ Technologies Used
+
+- **Operating Systems:** Linux (e.g., Ubuntu), Windows
+- **Containerization:** Docker, Docker Compose
+- **Database:** PostgreSQL
+- **Database Management:** pgAdmin
+- **Programming Language:** Python 3
+- **Python Libraries:** `pandas`, `sqlalchemy`, `psycopg2-binary`, `python-dotenv`
+- **Business Intelligence:** Microsoft Power BI Desktop
+- **Version Control:** Git
+
+## 📂 Project Structure
+
 ```
 HR_Training_Dashboard_Project/
 ├── api/
@@ -55,6 +59,9 @@ HR_Training_Dashboard_Project/
 │   │   └── engagements.csv
 │   └── images/
 │       └── schema.png           # Database schema diagram
+│       └── dashboard_1.png      # Power BI Dashboard
+│       └── dashboard_2.png      # Power BI Dashboard
+│       └── dashboard_3.png      # Power BI Dashboard
 ├── etl/
 │   └── load_initial_data.py     # Script to load initial raw CSVs into PostgreSQL
 │   └── transform_data.py        # Script to load all required KPIs into a Fact Table in PostgreSQL
@@ -65,106 +72,210 @@ HR_Training_Dashboard_Project/
 └── README.md                    # Project documentation
 ```
 
-## Database Setup (PostgreSQL with Docker Compose)
+## ⚙️ Setup & Deployment Guide: A Dual-OS Journey
 
-The project leverages a PostgreSQL database and pgAdmin (a GUI for database management) running in Docker containers, orchestrated by Docker Compose. This ensures a consistent and isolated development environment.
+This project was developed by leveraging the strengths of both Linux for backend data processing and Windows for frontend visualization. Follow these phases carefully.
 
-### Initial Data Schema
-![Initial Data Schema](/data/images/schema.png)
+### **Phase 1: Setting up the Data Pipeline on Linux (Backend Processing)** 🐧
 
-**1. Prerequisites:**
-* Ensure you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running on your system.
+_(Assumes you have Git, Docker Engine, and Python 3 installed on your Linux distribution.)_
 
+1.  **Clone the Repository:**
+    Open your Linux terminal and clone the project, then navigate into its directory:
 
-
-**2. Configuration (Environment Variables):**
-* Sensitive credentials (PostgreSQL username/password/DB name, pgAdmin login) are managed using environment variables loaded from a `.env` file.
-* Create a file named `.env` in the **root of the project directory** (next to `docker-compose.yml`).
-* Add the following variables, replacing placeholders with your actual secure values:
+    ```bash
+    git clone [https://github.com/YOUR_GITHUB_USERNAME/HR_Training_Dashboard_Project.git](https://github.com/YOUR_GITHUB_USERNAME/HR_Training_Dashboard_Project.git)
+    cd HR_Training_Dashboard_Project
     ```
-    POSTGRES_USER=your_db_username
-    POSTGRES_PASSWORD=your_db_password
-    POSTGRES_DB=your_database_name
+
+2.  **Configure Environment Variables (`.env` file):**
+    Create a new file named `.env` in the root of the `HR_Training_Dashboard_Project/` directory. Fill it with your chosen database and pgAdmin credentials.
+
+    ```env
+    # .env file content
+    POSTGRES_USER=your_postgres_user
+    POSTGRES_PASSWORD=your_postgres_password
+    POSTGRES_DB=your_database_name_e.g._hr_training_db
     PGADMIN_DEFAULT_EMAIL=your_pgadmin_email@example.com
     PGADMIN_DEFAULT_PASSWORD=your_pgadmin_password
-    PGADMIN_LISTEN_PORT=8080 # Host port for pgAdmin
-    DB_PORT=5432             # Host port for PostgreSQL
     ```
-* **Security Note:** Ensure `.env` is listed in your `.gitignore` file (`.gitignore` should contain `/`.env`) to prevent it from being committed to your public repository.
 
-**3. Starting the Database Services:**
-* Open your terminal and navigate to the project root directory (`HR_Training_Dashboard_Project/`).
-* Start the PostgreSQL database and pgAdmin containers in detached mode (background):
+3.  **Launch Database Services (Docker Compose):**
+    Start your PostgreSQL database and pgAdmin containers in detached mode (`-d`):
+
     ```bash
     docker-compose up -d
     ```
-* To check the status of your containers:
+
+    Verify that both services are running and healthy:
+
     ```bash
     docker-compose ps
     ```
-    (Ensure `db` shows `Up (healthy)` and `pgadmin` shows `Up`).
-* To stop and remove the containers (and their associated persistent data volumes for a clean slate, use with caution in development):
-    ```bash
-    docker-compose down -v
-    ```
 
-**4. Accessing pgAdmin (Database GUI):**
-* Once the Docker containers are running, open your web browser.
-* Navigate to: `http://localhost:8080`
-* Log in using the `PGADMIN_DEFAULT_EMAIL` and `PGADMIN_DEFAULT_PASSWORD` defined in your `.env` file.
+    _(Expected output: Both `db` and `pgadmin` services should show `Up (healthy)` under their status.)_
 
-**5. Registering PostgreSQL Server in pgAdmin:**
-* Inside the pgAdmin web interface, right-click on "Servers" in the left panel and select "Register" > "Server...".
-* **General Tab:**
-    * **Name:** `HR Training Database` (or any descriptive name).
-* **Connection Tab:**
-    * **Host name/address:** `db` (This is the Docker Compose service name for the PostgreSQL container, enabling internal communication within the Docker network).
-    * **Port:** `5432`
-    * **Maintenance database:** `${POSTGRES_DB}` (e.g., `hr_training_db` from your `.env` file).
-    * **Username:** `${POSTGRES_USER}` (e.g., `your_db_username` from your `.env` file).
-    * **Password:** `${POSTGRES_PASSWORD}` (e.g., `your_db_password` from your `.env` file).
-* Click "Save". You should now see your database listed and be able to explore its schemas and tables.
-
-## Data Loading
-
-Initial raw data from CSV files is loaded into the PostgreSQL database using a Python script.
-
-**1. Install Python Dependencies:**
-* Ensure your Python virtual environment is activated.
-* Install necessary libraries:
-    ```bash
-    pip install SQLAlchemy psycopg2-binary
-    ```
-
-**2. Load All Raw CSVs:**
-* The script `etl/load_initial_data.py` is designed to read all raw CSV files from `data/raw/` and load them into corresponding tables in your PostgreSQL database.
-* Navigate to the `etl/` directory in your terminal:
-    ```bash
-    cd etl/
-    ```
-* Run the script:
-    ```bash
-    python load_initial_data.py
-    ```
-* **Verification:** After running the script, verify in pgAdmin (`http://localhost:8080`) under your `HR Training Database` > `Databases` > `your_database_name` > `Schemas` > `public` > `Tables`. You should see the following tables populated with data:
-    * `participants`
-    * `courses`
-    * `enrollments`
-    * `feedbacks`
-    * `engagements`
-
-## Data Transformation
-
-The project employs Python scripts to transform raw data from the initial CSV imports into a clean, unified, and analytical-ready format suitable for dashboarding and KPI calculations.
-
-### Transformation Script: `etl/transform_data.py`
-
-This script orchestrates the core data transformation steps:
-
-1.  **Initial Join (`transformed_enrollments_participants`):** It first performs a join between the `enrollments` and `participants` tables. This step integrates participant demographics with their enrollment records and derives basic fields like `is_completed`, `enrollment_year`, and `enrollment_month`. This intermediate result is stored in the `transformed_enrollments_participants` table.
-2.  **Fact Table Creation (`fact_training_kpis`):** Building upon the previous step, this script then creates a comprehensive "fact" table named `fact_training_kpis`. This is achieved by:
-    * **Joining** `transformed_enrollments_participants` with `courses` to add course details (e.g., `course_name`, `training_hours`).
-    * **Joining** with `feedbacks` to incorporate feedback scores and comments.
-    * The `fact_training_kpis` table serves as the primary data source for dashboarding, containing all necessary fields to directly calculate KPIs like Course Completion Rate, Average Course Feedback Score, Active Participant Count, and Training Hours Delivered. It includes aggregated and derived fields ready for visualization.
+Absolutely — here's a clean, **important section** you can include in your GitHub README under something like `🔌 Connecting pgAdmin to PostgreSQL in Docker (Windows)`:
 
 ---
+
+### 🔌 Connecting pgAdmin to PostgreSQL in Docker (Windows)
+
+If you're using **Docker on Windows** and trying to connect **pgAdmin (in a container)** to your **PostgreSQL database (in another container)**, using `localhost` or `127.0.0.1` as the host **will not work**. That's because each container runs in its own network space.
+
+#### ✅ Use this instead:
+
+```text
+Host: host.docker.internal
+Port: 5432
+Username: <your POSTGRES_USER>      # e.g. mnizhadali
+Password: <your POSTGRES_PASSWORD> # e.g. Simpl3P4ssword
+Database: <your POSTGRES_DB>       # e.g. hr_training_db
+```
+
+`host.docker.internal` is a special DNS name that allows Docker containers to access the host machine, which is where PostgreSQL is actually exposed on port `5432`.
+
+#### Example pgAdmin connection settings:
+
+| Field             | Value                  |
+| ----------------- | ---------------------- |
+| Name              | `hr_training_db`       |
+| Host name/address | `host.docker.internal` |
+| Port              | `5432`                 |
+| Username          | `mnizhadali`           |
+| Password          | `Simpl3P4ssword`       |
+| Maintenance DB    | `hr_training_db`       |
+
+1.  **Prepare Python Environment & Run ETL:**
+    Set up a Python virtual environment, install necessary libraries, and execute the ETL scripts:
+
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install pandas sqlalchemy psycopg2-binary python-dotenv
+    cd etl/
+    python3 load_initial_data.py
+    python3 transform_data.py
+    cd .. # Navigate back to the project root
+    ```
+
+    _(This will load your raw CSVs and then transform them into the `fact_training_kpis` table in your PostgreSQL database.)_
+
+2.  **Verify Data (Optional - via pgAdmin on Linux):**
+    Open your web browser on Linux and go to `http://localhost:8080`. Log in with your pgAdmin credentials and connect to your PostgreSQL server (`db:5432`) to confirm the tables (especially `fact_training_kpis`) are populated.
+
+3.  **Stop Docker Services on Linux:**
+    Once ETL is complete on Linux, it's crucial to stop the containers before transitioning to Windows to avoid port conflicts and ensure data integrity.
+    ```bash
+    docker-compose down
+    ```
+
+### **Phase 2: Setting up the Dashboarding Environment on Windows (Frontend Visualization)** 🖥️
+
+_(Assumes you have Docker Desktop for Windows and Python 3 installed on your Windows OS, with Python added to PATH.)_
+
+1.  **Transfer Project Files:**
+    Copy the entire `HR_Training_Dashboard_Project/` folder from your Linux partition to a convenient location on your Windows drive (e.g., `C:\Users\YourUser\Documents\`).
+
+2.  **Launch Docker Desktop for Windows:**
+    Ensure Docker Desktop is running in your Windows system tray.
+
+3.  **Restart Database Services on Windows:**
+    Open a **new** Command Prompt (CMD) or PowerShell window, navigate to your copied project folder, and restart the Docker services:
+
+    ```cmd
+    cd C:\path\to\HR_Training_Dashboard_Project
+    docker-compose up -d
+    docker-compose ps
+    ```
+
+    _(Confirm `Up (healthy)` for both services.)_
+
+4.  **Prepare Python Environment & Re-run ETL (for Windows Database Instance):**
+    Although you ran ETL on Linux, it's crucial to re-run it now that a fresh PostgreSQL instance is running on Windows (unless you configured persistent volumes, which is not the default here).
+
+    ```cmd
+    python -m venv venv
+    .\venv\Scripts\activate
+    pip install pandas sqlalchemy psycopg2-binary python-dotenv
+    cd etl/
+    python load_initial_data.py
+    python transform_data.py
+    cd ..
+    ```
+
+5.  **Verify Data (Recommended - via pgAdmin on Windows):**
+    Open your web browser on Windows and go to `http://localhost:8080`. Log in and verify that your `fact_training_kpis` table contains the expected data.
+
+6.  **Install Power BI Desktop:**
+    Download and install Power BI Desktop from the official Microsoft website: [https://powerbi.microsoft.com/en-us/downloads/](https://powerbi.microsoft.com/en-us/downloads/).
+
+7.  **Connect Power BI Desktop to PostgreSQL:**
+    - Launch Power BI Desktop.
+    - Click **"Get Data"** > **"PostgreSQL database"** > "Connect".
+    - Enter Connection Details:
+      - **Server:** `localhost`
+      - **Port:** `5432`
+      - **Database:** `your_database_name_e.g._hr_training_db` (from your `.env` file)
+    - Click "OK".
+    - In the next window, select **"Database"** on the left. Enter your `POSTGRES_USER` and `POSTGRES_PASSWORD`. Click "Connect".
+    - In the "Navigator" window, expand your database and the `public` schema.
+    - Select the **`fact_training_kpis`** table (and potentially other raw tables if you want them in Power BI for reference) and click **"Load"**.
+
+### **Phase 3: Dashboard Design & Refinement in Power BI** 🎨
+
+1.  **KPI Calculation (DAX Measures):**
+    You created several DAX measures for your KPIs:
+
+    - `Total Completed Enrollments`
+    - `Total Enrollments`
+    - `Course Completion Rate` (formatted as Percentage)
+    - `Average Feedback Score` (formatted as Decimal Number)
+    - `Active Participant Count`
+    - `Total Training Hours Delivered`
+
+2.  **Dashboard Layout & Consolidation:**
+    Organize your visuals across a maximum of 1-3 pages for optimal user experience and clarity.
+
+    - **Page 1: "HR Training Overview"**
+      - High-level KPI cards at the top.
+      - Overall trends (e.g., Active Participants Over Time, Completion Rate Over Time) using line charts.
+      - Primary breakdowns (e.g., Completion Rate by Course Category, Average Feedback by Course Category).
+      - **Global Slicers:** `Department`, `Course Category`, `Enrollment Year` (or `enrollment_month_year`).
+    - **Page 2 (Optional): "Detailed Course Performance"**
+      - Focus on individual course names. Bar charts for `Average Feedback Score by Course Name`, `Completion Rate by Course Name`. Maybe a detailed table of course metrics.
+    - **Page 3 (Optional): "Department & Participant Insights"**
+      - Focus on departmental comparisons. Charts for `Active Participants by Department`, `Completion Rate by Department`, `Training Hours by Department`.
+
+3.  **Refinement & Aesthetics:**
+    - Apply a consistent Power BI theme (View tab > Themes).
+    - Ensure clear titles for pages and individual visuals.
+    - Use consistent font sizes, colors, and visual borders/shadows for a professional look.
+    - Validate all interactions (slicers filtering all visuals correctly).
+
+## 🖼️ Dashboard Screenshots
+
+Here are some screenshots of the completed dashboard, showcasing the key insights and interactive elements.
+
+### Overview
+
+![Dashboard Overview Page](/data/images/dashboard_1.png)
+_A high-level view of key HR training KPIs and overall trends._
+
+### Course Performance Details
+
+![Course Performance Details Page](/data/images/dashboard_2.png)
+_Detailed breakdown of course performance by name and category._
+
+### Departmental Insights
+
+![Departmental Insights Page](/data/images/dashboard_3.png)
+_Analysis of training engagement and effectiveness across different departments._
+
+## 🔮 Future Enhancements
+
+- Implement Row-Level Security (RLS) for departmental managers to view only their data.
+- Integrate additional HR data sources (e.g., employee demographics, budget data) for richer analysis.
+- Automate dashboard refreshes using Power BI Gateway.
+- Develop advanced predictive analytics for training needs or success.
+- Create drill-through pages for more granular details on specific enrollments or participants.
